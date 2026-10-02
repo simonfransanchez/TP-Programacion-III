@@ -2,12 +2,13 @@ package misiones;
 
 public abstract class Mision {
     private Nave nave;
+    private Informe informe;
 
     public Mision(Nave nave) {
         this.nave = nave;
     }
 
-    public void realizarMision(){
+    public Informe realizarMision(){
         preparar();
         ejecutar();
         evaluarResultado();
