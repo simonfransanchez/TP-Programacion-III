@@ -1,4 +1,22 @@
 package motor;
 
 public class PreparandoSaltoState {
+    private Motor m;
+
+    public DisponibleState(Motor mm){       //esto linkea el motor con esta clase
+        this.m=mm;
+    }
+
+    public void cancelarSalto(){
+        System.out.println("Se cancelo el salto ");
+        m.setEstado(new DisponibleState(m));        //aca cambio el estado a preparando
+    }
+
+    public void completarPreparacion(){
+
+        System.out.println("Motor listo para salto");
+        m.setEstado(new EnWarpState(m));        //aca cambio el estado a preparando
+    }
+
+
 }

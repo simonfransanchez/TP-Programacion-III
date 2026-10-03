@@ -7,10 +7,8 @@ public class DisponibleState implements State{
         this.m=mm;
     }
 
-    @Override
-    public iniciarSalto(){
+    public void iniciarSalto(){
         System.out.println("se esta preaparando el salto");
-        m.setEstado(new PreparandoSaltoState);        //aca cambio el estado a preparando
+        m.setEstado(new PreparandoSaltoState(m));        //aca cambio el estado a preparando
     }
-
 }

@@ -2,22 +2,19 @@ package motor;
 
 public interface State {
 
-    public iniciarSalto(){
+    default void iniciarSalto(){
         System.out.println("no se pudo iniciar el salto");
     }
-    public cancelarSalto(){
+    default void cancelarSalto(){
         System.out.println("no se pudo cancelar el salto");
     }
-    public terminarWarp(){
+    default void terminarWarp(){
         System.out.println("no se pudo termianr el warp");
     }
-    public completarEnfriamiento(){
+    default void completarEnfriamiento(){
         System.out.println("no se pudo terminar el enfriamiento");
     }
-    public completarPreparacion(){
+    default void completarPreparacion(){
         System.out.println("no se pudo terminar la preparacion");
-    }
-    public actulizar(){
-        System.out.println("no se pudo actualizar");
     }
 }

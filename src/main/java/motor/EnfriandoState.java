@@ -7,8 +7,9 @@ public class EnfriandoState implements State{
         this.m=mm;
     }
 
-    public completarEnfriamiento(){
+    public void completarEnfriamiento(){
         System.out.println("no se pudo terminar el enfriamiento");
+        m.setEstado(new DisponibleState(m));        //aca cambio el estado a preparando
     }
 
 }
