@@ -1,7 +1,8 @@
 package naves;
 
-public interface Nave {
+import motor.Motor;
 
+public interface Nave {
 
     int getCombustible();
 
@@ -9,4 +10,13 @@ public interface Nave {
 
     int getDesgaste();
 
+    Motor getMotor();
+
+    void cargarCombustible(int cantidad);
+
+    void cargarEnergia(int cantidad);
+
+    boolean requiereMantenimiento();
+
+    void realizarMantenimiento();
 }
