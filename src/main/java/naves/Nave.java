@@ -1,9 +1,12 @@
+package naves;
+
 public interface Nave {
 
 
-    private float combustibleInicial;
-    private float energiaInicial;
-    private float desgasteInicial;
+    int getCombustible();
 
+    int getEnergia();
+
+    int getDesgaste();
 
 }
