@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public abstract class Mision {
     protected final Asistente asistente;
-    private final int combustible_requerido;
-    private final int energia_requerida;
+    private int combustible_requerido;
+    private int energia_requerida;
 
     protected Mision(Asistente asistente) {
         this.asistente = Objects.requireNonNull(asistente, "Falta asignar un asistente para la mision");
