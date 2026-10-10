@@ -8,8 +8,19 @@ public class EnfriandoState implements State{
     }
 
     public void completarEnfriamiento(){
-        System.out.println("no se pudo terminar el enfriamiento");
+        System.out.println("Listo el enfriamiento");
         m.setEstado(new DisponibleState(m));        //aca cambio el estado a preparando
+    }
+
+    public void iniciarSalto(){
+        System.out.println("no se pudo iniciar el salto");
+    }
+    public void cancelarSalto(){
+        System.out.println("no se pudo cancelar el salto");
+    }
+    public void terminarWarp(){System.out.println("no se pudo termianr el warp");}
+    public void completarPreparacion(){
+        System.out.println("no se pudo terminar la preparacion");
     }
 
 }
