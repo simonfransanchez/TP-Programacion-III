@@ -4,7 +4,7 @@ public class Motor {
     private State estado;
 
     public Motor() {
-        this.estado = new DispobleState(this);
+        this.estado = new DisponibleState(this);
     }
 
     public void setEstado(State estado) {
