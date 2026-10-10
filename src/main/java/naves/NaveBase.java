@@ -2,7 +2,7 @@ package naves;
 
 import motor.Motor;
 
-public abstract class NaveBase implements Nave {
+public abstract class NaveBase {
 
     private int combustible;
     private int energia;
@@ -16,47 +16,31 @@ public abstract class NaveBase implements Nave {
         this.motor = new Motor();
     }
 
-    @Override
     public int getCombustible() {
         return combustible;
     }
 
-    @Override
     public int getEnergia() {
         return energia;
     }
 
-    @Override
     public int getDesgaste() {
         return desgaste;
     }
 
-    @Override
     public Motor getMotor() {
         return motor;
     }
 
-    @Override
-    public void cargarCombustible(int cantidad) {
-        if (combustible + cantidad <= 100) {
-            combustible += cantidad;
-        }
+    public void setCombustible(int combustible) {
+        this.combustible = combustible;
     }
 
-    @Override
-    public void cargarEnergia(int cantidad) {
-        if (energia + cantidad <= 100) {
-            energia += cantidad;
-        }
+    public void setEnergia(int energia) {
+        this.energia = energia;
     }
 
-    @Override
-    public boolean requiereMantenimiento() {
-        return desgaste >= 80;
-    }
-
-    @Override
-    public void realizarMantenimiento() {
-        desgaste = 0;
+    public void setDesgaste(int desgaste) {
+        this.desgaste = desgaste;
     }
 }

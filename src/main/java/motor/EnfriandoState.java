@@ -23,4 +23,8 @@ public class EnfriandoState implements State{
         System.out.println("no se pudo terminar la preparacion");
     }
 
+    @Override
+    public boolean estaDisponible() {
+        return false;
+    }
 }

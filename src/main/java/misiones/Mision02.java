@@ -1,5 +1,7 @@
 package misiones;
 
+import asistente.Asistente;
+
 public class Mision02 extends Mision{
 
     protected Mision02(Asistente asistente) {
@@ -9,17 +11,16 @@ public class Mision02 extends Mision{
 
     @Override
     protected String nombreMision() {
-        return "M2";
+        return "M-02";
     }
 
     @Override
-    protected void evaluarResultado() {
-
+    protected boolean evaluarResultado() {
+        return true;
     }
 
     @Override
     protected void ejecutar() {
-
     }
 
     @Override

@@ -3,7 +3,7 @@ package motor;
 public class PreparandoSaltoState implements State{
     private Motor m;
 
-    public DisponibleState(Motor mm){       //esto linkea el motor con esta clase
+    public PreparandoSaltoState(Motor mm){       //esto linkea el motor con esta clase
         this.m=mm;
     }
 
@@ -27,5 +27,10 @@ public class PreparandoSaltoState implements State{
     }
     public void completarEnfriamiento(){
         System.out.println("no se pudo terminar el enfriamiento");
+    }
+
+    @Override
+    public boolean estaDisponible() {
+        return false;
     }
 }

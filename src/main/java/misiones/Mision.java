@@ -1,25 +1,31 @@
 package misiones;
 
+import asistente.Asistente;
+
 import java.util.Objects;
 
 
 public abstract class Mision {
     private final Asistente asistente;
     private int combustibleRequerido;
-    private int energiaRequerida;
+    private int energiaAdicional;
+    private int desgaste;
     private String motivoRechazo;
     private boolean exitoMision;
 
     public Mision(Asistente asistente) {
         this.asistente = Objects.requireNonNull(asistente, "Falta asignar un asistente para la mision");
         this.combustibleRequerido = 4;
+        this.desgaste = 4;
     }
 
     public final Informe realizarMision () {
         Informe informe = null;
         if (preparaciones()) {
             ejecutar();
-            evaluarResultado();
+            exitoMision = evaluarResultado();
+            if (exitoMision)
+                energiaAdicional +=
             informe = cerrar();
         }
         else
@@ -37,7 +43,7 @@ public abstract class Mision {
             this.motivoRechazo = "no alcanza el combustible";
             return false;
         }
-        if (asistente.getEnergia() < energiaRequerida) {
+        if (asistente.getEnergia() < energiaAdicional) {
             this.motivoRechazo = "no alcanza la energía";
             return false;
         }
@@ -46,7 +52,7 @@ public abstract class Mision {
 
     protected abstract String nombreMision();
 
-    protected abstract void evaluarResultado();
+    protected abstract boolean evaluarResultado();
 
     protected abstract void ejecutar();
 

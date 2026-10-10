@@ -22,4 +22,9 @@ public class DisponibleState implements State{
     public void completarPreparacion(){
         System.out.println("no se pudo terminar la preparacion");
     }
+
+    @Override
+    public boolean estaDisponible() {
+        return true;
+    }
 }
