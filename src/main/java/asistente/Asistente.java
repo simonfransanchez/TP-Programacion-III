@@ -1,12 +1,11 @@
 package asistente;
 
+import misiones.Informe;
 import misiones.Mision;
 import motor.Motor;
 import motor.State;
 import naves.NaveBase;
 import bitacora.Bitacora;
-
-import java.util.ArrayList;
 
 public class Asistente {
     private NaveBase nave;
@@ -74,9 +73,17 @@ public class Asistente {
         }
     }
 
-    public void comenzarMision()
+//    public void comenzarMision(Mision mision){    LO DEJO EN CASO DE QUE SE TENGA QUE INICIAR LA MISION DESDE EL ASISTENTE
+//        Informe informe;
+//        if (mision != null && puedeCumplir(nave,mision)){
+//            informe = mision.realizarMision(this.nave);
+//            nave.setEnergia();
+//            bitacora.agregarEvento(informe.toString());
+//        }
+//    }
 
     public void mostrarBitacora(){
         bitacora.mostrarBitacora();
     }
+
 }

@@ -1,47 +1,58 @@
 package misiones;
 
 
+import asistente.Asistente;
 import naves.NaveBase;
 
 public abstract class Mision {
-    private int combustibleRequerido;
-    private int desgaste;
-    private String motivoRechazo;
+    private final int desgaste;
+    private final int combustibleRequerido;
+    private final int energiaRequerida;
     private boolean exitoMision;
+    private Informe informe = null;
+    private Asistente asistente;
 
-    public Mision() {
+    public Mision(Asistente asistente) {
+        this.asistente = asistente;
         this.combustibleRequerido = 4;
         this.desgaste = 4;
+        this.energiaRequerida = energiaAdicional();
     }
 
-    public final Informe realizarMision () {
-        Informe informe = null;
+    public final Informe realizarMision() {     // la idea es que dentro de los metodo actualiza el informe
+        System.out.println(nombreMision());     // y los recursos de la nave mediante el asistente
+        if (puedeCumplir()) {
             preparar();
             ejecutar();
-            //asistente.agregaDesgaste(desgaste);
-            exitoMision = evaluarResultado();
-            informe = cerrar();
+            evaluarResultado();
+            cerrar();
+        }
+        return this.informe;
+    }
+
+    private boolean puedeCumplir() {
+        String motivoRechazo = "";
+
+        if (!asistente.naveDisponible())
+            motivoRechazo = "la nave no se encuentra disponible";
+
+        if (asistente.getCombustible() < combustibleRequerido)
+            motivoRechazo = "no alcanza el combustible";
+
+        if (asistente.getEnergia() < energiaRequerida)
+            motivoRechazo = "no alcanza la energia";
+
+        if (!motivoRechazo.equals("")){
+            asistente.registrar(nombreMision() + motivoRechazo);
+            return false;
         }
 
-    private boolean puedeCumplir(NaveBase nave) {
-        if (!asistente.naveDisponible()) {
-            this.motivoRechazo = "la nave no se encuentra disponible";
-            return false;
-        }
-        if (asistente.getCombustible() < combustibleRequerido) {
-            this.motivoRechazo = "no alcanza el combustible";
-            return false;
-        }
-        if (asistente.requiereMantenimiento()){
-            this.motivoRechazo = "la nave requiere mantenimiento";
-        return false;
-        }
         return true;
     }
 
     protected abstract void preparar();
 
-    protected abstract String nombreMision();
+    public abstract String nombreMision();
 
     protected abstract boolean evaluarResultado();
 
@@ -49,5 +60,21 @@ public abstract class Mision {
 
     protected abstract Informe cerrar();
 
-    
+    public abstract int energiaAdicional();
+
+    public int getCombustibleRequerido() {
+        return combustibleRequerido;
+    }
+
+    public int getEnergiaRequerida() {
+        return energiaRequerida;
+    }
+
+    public boolean isExitoMision() {
+        return exitoMision;
+    }
+
+    public void setExitoMision(boolean exitoMision) {
+        this.exitoMision = exitoMision;
+    }
 }

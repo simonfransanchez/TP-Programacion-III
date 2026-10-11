@@ -4,12 +4,15 @@ import asistente.Asistente;
 
 public class Mision02 extends Mision{
 
-    protected Mision02() {
-        System.out.println(nombreMision());
+    protected Mision02(Asistente asistente) {
+        super(asistente);
     }
 
     @Override
-    protected String nombreMision() {
+    protected void preparar() {}
+
+    @Override
+    public String nombreMision() {
         return "M-02";
     }
 
@@ -19,11 +22,15 @@ public class Mision02 extends Mision{
     }
 
     @Override
-    protected void ejecutar() {
-    }
+    protected void ejecutar() {}
 
     @Override
     protected Informe cerrar() {
         return null;
+    }
+
+    @Override
+    public int energiaAdicional() {
+        return 5;
     }
 }
