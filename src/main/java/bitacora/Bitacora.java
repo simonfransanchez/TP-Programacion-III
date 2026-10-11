@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Bitacora {
     private ArrayList<String> eventos;
-    private static int numero;
+    private int numero;
 
     public Bitacora() {
         this.eventos=new ArrayList<>();

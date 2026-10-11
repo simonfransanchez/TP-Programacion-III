@@ -1,0 +1,10 @@
+@startuml
+class bitacora.Bitacora {
+- ArrayList<String> eventos
+- {static} int numero
++ void agregarEvento(String)
++ void mostrarBitacora()
+}
+
+
+@enduml
