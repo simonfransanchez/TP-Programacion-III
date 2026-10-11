@@ -18,6 +18,7 @@ public abstract class Mision {
         Informe informe = null;
             preparar();
             ejecutar();
+            //asistente.agregaDesgaste(desgaste);
             exitoMision = evaluarResultado();
             informe = cerrar();
         }
