@@ -4,12 +4,14 @@ package misiones;
 import asistente.Asistente;
 import naves.NaveBase;
 
+import java.util.List;
+
 public abstract class Mision {
     private final int desgaste;
     private final int combustibleRequerido;
     private final int energiaRequerida;
     private boolean exitoMision;
-    private Informe informe = null;
+    private Informe informe;
     private Asistente asistente;
 
     public Mision(Asistente asistente) {
@@ -17,16 +19,36 @@ public abstract class Mision {
         this.combustibleRequerido = 4;
         this.desgaste = 4;
         this.energiaRequerida = energiaAdicional();
+        informe = new Informe(
+                "",               // mision
+                "", // objetivo
+                false,                              // exitosa
+                List.of(), // acciones
+                List.of(),       // recorrido
+                List.of(), // eventosRelevantes
+                0,  // combustibleConsumido
+                0,  // energiaConsumida
+                0,  // desgasteGenerado
+                0, // combustibleFinal
+                0,  // energiaFinal
+                0,  // desgasteFinal
+                List.of() // observaciones
+        );
     }
 
     public final Informe realizarMision() {     // la idea es que dentro de los metodo actualiza el informe
         System.out.println(nombreMision());     // y los recursos de la nave mediante el asistente
         if (puedeCumplir()) {
+            System.out.println("Preparando mision");
             preparar();
+            System.out.println("Ejecutando mision");
             ejecutar();
+            System.out.println("Evaluando mision");
             evaluarResultado();
+            System.out.println("Terminando mision");
             cerrar();
         }
+        asistente.agregarInformeBitacora(this.informe);
         return this.informe;
     }
 

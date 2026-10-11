@@ -53,26 +53,16 @@ public class MainPruebas {
         // Estado: Disponible nuevamente
         System.out.println(exploradora.getMotor());
 
-
         // =====================================
-        // 3. RECURSOS Y MANTENIMIENTO
+        // 3. BITACORA
         // =====================================
 
-        System.out.println("\n--- 3. RECURSOS Y MANTENIMIENTO ---");
+        System.out.println("\n--- 3. BITACORA ---");
 
-        // TODO: usar los métodos reales de Nave
-        // Consultar energía y combustible iniciales
-        // Intentar consumir recursos
-        // Verificar que no queden valores negativos
-        // Aplicar desgaste
-        // Verificar si requiere mantenimiento
-
-        // Ejemplo conceptual:
-        // exploradora.consumirEnergia(cantidad);
-        // exploradora.consumirCombustible(cantidad);
-        // exploradora.aplicarDesgaste(cantidad);
-        // exploradora.realizarMantenimiento();
-
+        Asistente asistente = new Asistente(carguero);
+        asistente.cargarCombustible(4);
+        asistente.cargarEnergia(4);
+        asistente.mostrarBitacora();
 
         // =====================================
         // 4. MISIONES (TEMPLATE METHOD)
@@ -81,35 +71,23 @@ public class MainPruebas {
         System.out.println("\n--- 4. MISIONES ---");
 
         // TODO: crear las misiones M-01, M-02 y M-03
-        // Mision mision01 = new Mision01(...);
-        // Mision mision02 = new Mision02(...);
-        // Mision mision03 = new Mision03(...);
-
+        Mision mision01 = FactoryMision.crearMision(1,asistente);
+        Mision mision02 = FactoryMision.crearMision(2,asistente);
+        Mision mision03 = FactoryMision.crearMision(3,asistente);
         // Ejecutar el ciclo completo definido por Template Method:
         // preparar -> ejecutar -> evaluar -> cerrar
 
-        // mision01.realizarMision();
-        // mision02.realizarMision();
-        // mision03.realizarMision();
-
-
-        // =====================================
-        // 5. BITACORA
-        // =====================================
-
-        System.out.println("\n--- 5. BITACORA ---");
-
-        Asistente asistente = new Asistente(carguero);
-        asistente.cargarCombustible(4);
-        asistente.cargarEnergia(4);
+        mision01.realizarMision();
+        mision02.realizarMision();
+        mision03.realizarMision();
         asistente.mostrarBitacora();
 
 
         // =====================================
-        // 6. LIQUIDACION DE SUELDOS (DECORATOR)
+        // 5. LIQUIDACION DE SUELDOS (DECORATOR)
         // =====================================
 
-        System.out.println("\n--- 6. LIQUIDACION DE SUELDOS ---");
+        System.out.println("\n--- 5. LIQUIDACION DE SUELDOS ---");
         Tripulante t1 = new Tripulante("Juan", Cargo.CAPITAN, Origen.TERRICOLA,3);
         Tripulante t2 = new Tripulante("Ana", Cargo.CONSEJERO, Origen.VULCANO,5);
         Tripulante t3 = new Tripulante("Pedro", Cargo.TENIENTE, Origen.MARCIANO,0);
