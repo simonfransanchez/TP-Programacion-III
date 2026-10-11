@@ -72,6 +72,9 @@ public class Asistente {
             bitacora.agregarEvento("La energia no entraba en el tanque");
         }
     }
+    public void setCombustible(int i){
+        this.nave.setCombustible(i);
+    }
     public void agregarInformeBitacora(Informe i){
         bitacora.agregarEvento(i.toString());
     }
