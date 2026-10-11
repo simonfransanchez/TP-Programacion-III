@@ -8,7 +8,6 @@ import java.util.Objects;
 public abstract class Mision {
     private final Asistente asistente;
     private int combustibleRequerido;
-    private int energiaAdicional;
     private int desgaste;
     private String motivoRechazo;
     private boolean exitoMision;
@@ -23,9 +22,12 @@ public abstract class Mision {
         Informe informe = null;
         if (preparaciones()) {
             ejecutar();
+            asistente.agregaDesgaste(desgaste);
             exitoMision = evaluarResultado();
-            if (exitoMision)
-                energiaAdicional +=5;
+            if (exitoMision) {
+                asistente.registrar(nombreMision() + "Mision cumplida");
+                asistente.cargarEnergia(energiaExtra());
+            }
             informe = cerrar();
         }
         else
@@ -43,9 +45,9 @@ public abstract class Mision {
             this.motivoRechazo = "no alcanza el combustible";
             return false;
         }
-        if (asistente.getEnergia() < energiaAdicional) {
-            this.motivoRechazo = "no alcanza la energía";
-            return false;
+        if (asistente.requiereMantenimiento()){
+            this.motivoRechazo = "la nave requiere mantenimiento";
+        return false;
         }
         return true;
     }
@@ -57,4 +59,8 @@ public abstract class Mision {
     protected abstract void ejecutar();
 
     protected abstract Informe cerrar();
+
+    protected int energiaExtra(){
+        return 5;
+    }
 }

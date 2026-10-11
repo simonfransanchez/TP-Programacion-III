@@ -20,11 +20,15 @@ public class Mision03 extends Mision{
 
     @Override
     protected void ejecutar() {
-
     }
 
     @Override
     protected Informe cerrar() {
         return null;
+    }
+
+    @Override
+    protected int energiaExtra() {
+        return 0;
     }
 }
