@@ -29,4 +29,7 @@ public class Motor {
     public void completarPreparacion(){
         estado.completarPreparacion();
     }
+    public String toString(){
+        return "MotorEstado:"+this.getEstado();
+    }
 }

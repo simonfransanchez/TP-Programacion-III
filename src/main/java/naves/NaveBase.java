@@ -1,6 +1,7 @@
 package naves;
 
 import motor.Motor;
+import motor.State;
 
 public abstract class NaveBase {
 
@@ -42,5 +43,24 @@ public abstract class NaveBase {
 
     public void setDesgaste(int desgaste) {
         this.desgaste = desgaste;
+    }
+
+    public String toString(){
+        return "Combustible:"+this.combustible+"  Energia:"+this.energia+"  Desgaste:"+this.desgaste;
+    }
+    public void iniciarSalto(){
+        motor.iniciarSalto();
+    }
+    public void cancelarSalto(){
+        motor.cancelarSalto();
+    }
+    public void terminarWarp(){
+        motor.terminarWarp();
+    }
+    public void completarEnfriamiento(){
+        motor.completarEnfriamiento();
+    }
+    public void completarPreparacion(){
+        motor.completarPreparacion();
     }
 }
