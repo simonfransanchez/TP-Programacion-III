@@ -25,7 +25,7 @@ public abstract class Mision {
             ejecutar();
             exitoMision = evaluarResultado();
             if (exitoMision)
-                energiaAdicional +=
+                energiaAdicional +=5;
             informe = cerrar();
         }
         else
