@@ -22,7 +22,7 @@ public abstract class Mision {
         Informe informe = null;
         if (preparaciones()) {
             ejecutar();
-            asistente.agregaDesgaste(desgaste);
+            //asistente.agregaDesgaste(desgaste);
             exitoMision = evaluarResultado();
             if (exitoMision) {
                 asistente.registrar(nombreMision() + "Mision cumplida");

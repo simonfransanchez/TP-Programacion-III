@@ -98,11 +98,10 @@ public class MainPruebas {
 
         System.out.println("\n--- 5. BITACORA ---");
 
-        // TODO: consultar la bitácora de una nave
-        // List<Evento> eventos = exploradora.getBitacora().getEventos();
-
-        // Verificar que los eventos estén registrados
-        // y ordenados cronológicamente.
+        Asistente asistente = new Asistente(carguero);
+        asistente.cargarCombustible(4);
+        asistente.cargarEnergia(4);
+        asistente.mostrarBitacora();
 
 
         // =====================================
