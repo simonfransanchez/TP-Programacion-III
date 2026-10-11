@@ -15,18 +15,13 @@ public class Mision01 extends Mision {
     }
 
     @Override
-    protected boolean evaluarResultado() {
-        return true;
-    }
+    protected void evaluarResultado() {}
 
     @Override
-    protected void ejecutar() {
-    }
+    protected void ejecutar() {}
 
     @Override
-    protected Informe cerrar() {
-        return null;
-    }
+    protected void cerrar() {}
 
     @Override
     public int energiaAdicional() {

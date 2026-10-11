@@ -2,7 +2,6 @@ package misiones;
 
 
 import asistente.Asistente;
-import naves.NaveBase;
 
 import java.util.List;
 
@@ -76,17 +75,15 @@ public abstract class Mision {
 
     public abstract String nombreMision();
 
-    protected abstract boolean evaluarResultado();
+    protected abstract void evaluarResultado();
 
     protected abstract void ejecutar();
 
-    protected abstract Informe cerrar();
+    protected abstract void cerrar();
 
     public abstract int energiaAdicional();
 
-    public int getCombustibleRequerido() {
-        return combustibleRequerido;
-    }
+    public int getCombustibleRequerido() { return combustibleRequerido; }
 
     public int getEnergiaRequerida() {
         return energiaRequerida;

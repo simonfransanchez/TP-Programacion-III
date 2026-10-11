@@ -1,0 +1,21 @@
+@startuml
+class asistente.Asistente {
+- NaveBase nave
+- Bitacora bitacora
++ int getCombustible()
++ int getEnergia()
++ int getDesgaste()
++ Motor getMotor()
++ void cargarCombustible(int)
++ boolean requiereMantenimiento()
++ boolean naveDisponible()
++ void realizarMantenimiento()
++ void registrar(String)
++ void cargarEnergia(int)
++ void setCombustible(int)
++ void agregarInformeBitacora(Informe)
++ void mostrarBitacora()
+}
+
+
+@enduml

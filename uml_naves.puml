@@ -1,0 +1,48 @@
+@startuml
+abstract class naves.NaveBase {
+- int combustible
+- int energia
+- int desgaste
+- Motor motor
+- ArrayList<Tripulante> tripulacion
++ int getCombustible()
++ int getEnergia()
++ int getDesgaste()
++ Motor getMotor()
++ void setCombustible(int)
++ void setEnergia(int)
++ void setDesgaste(int)
++ void agregarTripulante(Tripulante)
++ void quitarTripulante(Tripulante)
++ ArrayList<Tripulante> getTripulacion()
++ String toString()
++ void iniciarSalto()
++ void cancelarSalto()
++ void terminarWarp()
++ void completarEnfriamiento()
++ void completarPreparacion()
+}
+
+
+class naves.NaveExploradora {
++ String toString()
+}
+
+class naves.NaveCombate {
++ String toString()
+}
+
+class naves.NaveFactory {
++ {static} NaveBase getNave(String)
+}
+
+class naves.NaveCarguero {
++ String toString()
+}
+
+
+
+naves.NaveBase <|-- naves.NaveExploradora
+naves.NaveBase <|-- naves.NaveCombate
+naves.NaveBase <|-- naves.NaveCarguero
+@enduml
