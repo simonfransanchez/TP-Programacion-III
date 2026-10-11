@@ -1,5 +1,6 @@
 package asistente;
 
+import misiones.Mision;
 import motor.Motor;
 import motor.State;
 import naves.NaveBase;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public class Asistente {
     private NaveBase nave;
     private ArrayList<String> bitacora;
+    private Mision mision;
 
     public Asistente(NaveBase nave) {
         this.nave = nave;
@@ -61,4 +63,7 @@ public class Asistente {
             nave.setEnergia(energia += cantidad);
         }
     }
+
+    public void comenzarMision()
+
 }
