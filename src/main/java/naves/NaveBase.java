@@ -2,6 +2,9 @@ package naves;
 
 import motor.Motor;
 import motor.State;
+import tripulacion.*;
+
+import java.util.ArrayList;
 
 public abstract class NaveBase {
 
@@ -9,12 +12,14 @@ public abstract class NaveBase {
     private int energia;
     private int desgaste;
     private Motor motor;
+    private ArrayList<Tripulante> tripulacion;
 
     public NaveBase(int combustible, int energia) {
         this.combustible = combustible;
         this.energia = energia;
         this.desgaste = 0;
         this.motor = new Motor();
+        this.tripulacion =new ArrayList<>();
     }
 
     public int getCombustible() {
@@ -45,6 +50,15 @@ public abstract class NaveBase {
         this.desgaste = desgaste;
     }
 
+    public void agregarTripulante(Tripulante t){
+        this.tripulacion.add(t);
+    }
+    public void quitarTripulante(Tripulante t){
+        this.tripulacion.remove(t);
+    }
+    public ArrayList<Tripulante> getTripulacion(){
+        return this.tripulacion;
+    }
     public String toString(){
         return "Combustible:"+this.combustible+"  Energia:"+this.energia+"  Desgaste:"+this.desgaste;
     }
