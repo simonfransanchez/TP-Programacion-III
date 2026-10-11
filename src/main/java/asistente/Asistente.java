@@ -7,6 +7,9 @@ import motor.State;
 import naves.NaveBase;
 import bitacora.Bitacora;
 
+/**
+ * Inv: nave != null && bitacora != null
+ */
 public class Asistente {
     private NaveBase nave;
     private Bitacora bitacora;
@@ -32,6 +35,12 @@ public class Asistente {
         return this.nave.getMotor();
     }
 
+    /**
+     * Pre:  cantidad > 0
+     * Post: si combustible_old + cantidad <= 100:
+     *           getCombustible() == combustible_old + cantidad y se registra "Se cargo nafta"
+     *       si no: getCombustible() == combustible_old y se registra el rechazo
+     */
     public void cargarCombustible(int cantidad) {
         int combustible = nave.getCombustible();
         if (combustible + cantidad <= 100) {
@@ -43,16 +52,25 @@ public class Asistente {
         }
     }
 
+    /**
+     * Post: devuelve true si y solo si getDesgaste() >= 80
+     */
     public boolean requiereMantenimiento() {
         return nave.getDesgaste() >= 80;
     }
 
+    /**
+     * Post: devuelve true si y solo si el motor esta en estado Disponible
+     */
     public boolean naveDisponible(){
         Motor motor = nave.getMotor();
         State estado = motor.getEstado();
         return (estado.estaDisponible());
     }
 
+    /**
+     * Post: getDesgaste() == 0 y se registra el mantenimiento en la bitacora
+     */
     public void realizarMantenimiento() {
         nave.setDesgaste(0);
         bitacora.agregarEvento("Se realizo mantenimiento");

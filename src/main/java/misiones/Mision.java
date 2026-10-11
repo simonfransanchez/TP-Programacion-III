@@ -5,6 +5,10 @@ import asistente.Asistente;
 
 import java.util.List;
 
+/**
+ * Inv: asistente != null && informe != null
+ * Inv: combustibleRequerido >= 0 && energiaRequerida >= 0
+ */
 public abstract class Mision {
     private final int desgaste;
     private final int combustibleRequerido;
@@ -35,6 +39,14 @@ public abstract class Mision {
         );
     }
 
+    /**
+     * Pre:  la mision fue creada con un asistente != null
+     * Post: devuelve el informe (nunca null) y lo agrega a la bitacora
+     * Post: si puedeCumplir() era true, se ejecutaron en este orden:
+     *       preparar -> ejecutar -> evaluarResultado -> cerrar
+     * Post: si puedeCumplir() era false, no se ejecuto ninguno de esos pasos
+     *       y se registro el motivo del rechazo
+     */
     public final Informe realizarMision() {     // la idea es que dentro de los metodo actualiza el informe
         System.out.println(nombreMision());     // y los recursos de la nave mediante el asistente
         if (puedeCumplir()) {
@@ -51,6 +63,12 @@ public abstract class Mision {
         return this.informe;
     }
 
+    /**
+     * Post: devuelve true si y solo si
+     *       asistente.naveDisponible()
+     *       && asistente.getCombustible() >= combustibleRequerido
+     *       && asistente.getEnergia() >= energiaRequerida
+     */
     private boolean puedeCumplir() {
         String motivoRechazo = "";
 
@@ -70,17 +88,19 @@ public abstract class Mision {
 
         return true;
     }
-
-    protected abstract void preparar();
-
     public abstract String nombreMision();
 
+    /** Pre (todos los pasos): puedeCumplir() == true
+     * Los metodos se encargan de la carga del informe y la actualizacion de los recursos
+     */
+    protected abstract void preparar();
     protected abstract void evaluarResultado();
-
     protected abstract void ejecutar();
-
     protected abstract void cerrar();
 
+    /**
+     * Post: devuelve un valor >= 0 (M-01: 5, M-02: 5, M-03: 0)
+     */
     public abstract int energiaAdicional();
 
     public int getCombustibleRequerido() { return combustibleRequerido; }

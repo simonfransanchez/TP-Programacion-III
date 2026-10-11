@@ -1,5 +1,8 @@
 package motor;
 
+/**
+ * Inv: estado != null y es uno de {Disponible, PreparandoSalto, EnWarp, Enfriando}
+ */
 public class Motor {
     private State estado;
 
@@ -7,6 +10,10 @@ public class Motor {
         this.estado = new DisponibleState(this);
     }
 
+    /**
+     * Pre:  estado != null
+     * Post: getEstado() == estado
+     */
     public void setEstado(State estado) {
         this.estado = estado;
     }
@@ -14,6 +21,11 @@ public class Motor {
     public State getEstado() {
         return estado;
     }
+
+    /**
+     * Post: delega en el estado actual; el motor pasa a un nuevo estado
+     *       solo si la transicion es valida
+     */
     public void iniciarSalto(){
         estado.iniciarSalto();
     }

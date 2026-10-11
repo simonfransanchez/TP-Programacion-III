@@ -8,6 +8,9 @@ public abstract class OrigenDecorator extends HaberDecorator {
 
     protected abstract double getSubsidiomensual();
 
+    /**
+     * Post: devuelve decorado.calcularHaber() + getSubsidiomensual()
+     */
     @Override
     public double calcularHaber() {
         return decorado.calcularHaber() + getSubsidiomensual();

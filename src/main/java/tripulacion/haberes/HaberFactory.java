@@ -5,6 +5,10 @@ import tripulacion.Origen;
 
 public class HaberFactory {
 
+    /**
+     * Pre:  cargo != null && antiguedad >= 0
+     * Post: devuelve el haber que corresponde al cargo
+     */
     public static Haber crearHaberCargo(Cargo cargo, int antiguedad) {
         if (cargo == null) {
             throw new IllegalArgumentException("El cargo no puede ser nulo");
@@ -23,6 +27,10 @@ public class HaberFactory {
         }
     }
 
+    /**
+     * Pre:  origen != null && haber != null
+     * Post: devuelve un haber que suma el subsidio del origen
+     */
     public static Haber decorarOrigen(Origen origen, Haber haber) {
         if (origen == null) {
             throw new IllegalArgumentException("El origen no puede ser nulo");

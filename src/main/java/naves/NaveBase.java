@@ -6,6 +6,10 @@ import tripulacion.*;
 
 import java.util.ArrayList;
 
+/**
+ * Inv: 0 <= combustible <= 100 && 0 <= energia <= 100 && 0 <= desgaste <= 100
+ * Inv: motor != null && tripulacion != null
+ */
 public abstract class NaveBase {
 
     private int combustible;
@@ -50,9 +54,17 @@ public abstract class NaveBase {
         this.desgaste = desgaste;
     }
 
+    /**
+     * Pre:  t != null
+     * Post: tripulacion contiene a t
+     */
     public void agregarTripulante(Tripulante t){
         this.tripulacion.add(t);
     }
+
+    /**
+     * Post: tripulacion no contiene a t
+     */
     public void quitarTripulante(Tripulante t){
         this.tripulacion.remove(t);
     }
@@ -62,6 +74,11 @@ public abstract class NaveBase {
     public String toString(){
         return "Combustible:"+this.combustible+"  Energia:"+this.energia+"  Desgaste:"+this.desgaste;
     }
+
+    /**
+     * Post: el estado del motor cambia solo si la transicion es valida
+     *       desde el estado actual (ver State)
+     */
     public void iniciarSalto(){
         motor.iniciarSalto();
     }

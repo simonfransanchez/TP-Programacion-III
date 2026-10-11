@@ -6,6 +6,10 @@ public class HaberCapitan implements Haber {
 
     private final int antiguedad;
 
+    /**
+     * Pre:  antiguedad >= 0 (si no, lanza IllegalArgumentException)
+     * Post: getAntiguedad == antiguedad (atributo final, no cambia)
+     */
     public HaberCapitan(int antiguedad) {
         if (antiguedad < 0) {
             throw new IllegalArgumentException("La antigüedad no puede ser negativa: " + antiguedad);
@@ -13,6 +17,9 @@ public class HaberCapitan implements Haber {
         this.antiguedad = antiguedad;
     }
 
+    /**
+     * Post: devuelve 1000 + (1000 * 0.20 * antiguedad)
+     */
     @Override
     public double calcularHaber() {
         return remuneracion + (remuneracion * porcentajexantiguedad * antiguedad);
