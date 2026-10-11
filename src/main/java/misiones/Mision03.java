@@ -3,8 +3,7 @@ package misiones;
 import asistente.Asistente;
 
 public class Mision03 extends Mision{
-    protected Mision03(Asistente asistente) {
-        super(asistente);
+    protected Mision03() {
         System.out.println(nombreMision());
     }
 
@@ -20,11 +19,15 @@ public class Mision03 extends Mision{
 
     @Override
     protected void ejecutar() {
-
     }
 
     @Override
     protected Informe cerrar() {
         return null;
+    }
+
+    @Override
+    protected int energiaExtra() {
+        return 0;
     }
 }

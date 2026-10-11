@@ -1,17 +1,20 @@
 package asistente;
 
+import misiones.Mision;
 import motor.Motor;
 import motor.State;
 import naves.NaveBase;
+import bitacora.Bitacora;
 
 import java.util.ArrayList;
 
 public class Asistente {
     private NaveBase nave;
-    private ArrayList<String> bitacora;
+    private Bitacora bitacora;
 
     public Asistente(NaveBase nave) {
         this.nave = nave;
+        this.bitacora = new Bitacora();
     }
 
     public int getCombustible() {
@@ -19,21 +22,25 @@ public class Asistente {
     }
 
     public int getEnergia(){
-        return nave.getEnergia();
+        return this.nave.getEnergia();
     }
 
     public int getDesgaste() {
-        return nave.getDesgaste();
+        return this.nave.getDesgaste();
     }
 
     public Motor getMotor(){
-        return nave.getMotor();
+        return this.nave.getMotor();
     }
 
     public void cargarCombustible(int cantidad) {
         int combustible = nave.getCombustible();
         if (combustible + cantidad <= 100) {
             nave.setCombustible(combustible += cantidad);
+            bitacora.agregarEvento("Se cargo nafta "+cantidad);
+        }
+        else{
+            bitacora.agregarEvento("El combustible no entraba en el tanque");
         }
     }
 
@@ -49,16 +56,27 @@ public class Asistente {
 
     public void realizarMantenimiento() {
         nave.setDesgaste(0);
+        bitacora.agregarEvento("Se realizo mantenimiento");
     }
 
     public void registrar(String registro){
-        this.bitacora.add(registro);
+        this.bitacora.agregarEvento(registro);
     }
 
     public void cargarEnergia(int cantidad) {
         int energia = nave.getEnergia();
         if (energia + cantidad <= 100) {
             nave.setEnergia(energia += cantidad);
+            bitacora.agregarEvento("Se cargo energia "+cantidad);
         }
+        else{
+            bitacora.agregarEvento("La energia no entraba en el tanque");
+        }
+    }
+
+    public void comenzarMision()
+
+    public void mostrarBitacora(){
+        bitacora.mostrarBitacora();
     }
 }

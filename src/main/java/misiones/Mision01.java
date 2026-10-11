@@ -4,8 +4,7 @@ import asistente.Asistente;
 
 public class Mision01 extends Mision {
 
-    public Mision01(Asistente asistente) {
-        super(asistente);
+    public Mision01() {
         System.out.println(nombreMision());
     }
 

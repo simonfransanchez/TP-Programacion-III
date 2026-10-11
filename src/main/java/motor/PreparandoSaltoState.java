@@ -14,7 +14,7 @@ public class PreparandoSaltoState implements State{
 
     public void completarPreparacion(){
 
-        System.out.println("Motor listo para salto");
+        System.out.println("Motor listo para salto e iniciando Warp");
         m.setEstado(new EnWarpState(m));        //aca cambio el estado a preparando
     }
 
@@ -33,4 +33,8 @@ public class PreparandoSaltoState implements State{
     public boolean estaDisponible() {
         return false;
     }
-}
+
+    public String toString(){
+        return "Preparando Salto";
+    }
+    }
