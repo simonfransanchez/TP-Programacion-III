@@ -5,6 +5,7 @@ import motor.*;
 import misiones.*;
 import asistente.*;
 import tripulacion.*;
+import tripulacion.haberes.*;
 
 public class MainPruebas {
 
@@ -109,25 +110,17 @@ public class MainPruebas {
         // =====================================
 
         System.out.println("\n--- 6. LIQUIDACION DE SUELDOS ---");
+        Tripulante t1 = new Tripulante("Juan", Cargo.CAPITAN, Origen.TERRICOLA,3);
+        Tripulante t2 = new Tripulante("Ana", Cargo.CONSEJERO, Origen.VULCANO,5);
+        Tripulante t3 = new Tripulante("Pedro", Cargo.TENIENTE, Origen.MARCIANO,0);
+        Tripulante t4 = new Tripulante("Lucia", Cargo.ALFEREZ, Origen.TERRICOLA,2);
+        Tripulante t5 = new Tripulante("Marcos", Cargo.TENIENTE, Origen.VULCANO,1);
 
-        // TODO: crear un tripulante y aplicar los decoradores
-        // Liquidacion sueldoBase = new SueldoBase(tripulante);
-        // Liquidacion sueldoConBonificacion =
-        //         new Bonificacion(sueldoBase);
+        System.out.println("aca irian los sueldos");
 
-        // System.out.println(sueldoConBonificacion.calcular());
-
-
-        // =====================================
-        // 7. INFORMES
-        // =====================================
-
-        System.out.println("\n--- 7. INFORMES ---");
-
-        // TODO: generar los informes requeridos por el proyecto
-        // Informe informe = new Informe(...);
-        // System.out.println(informe.generar());
-
+        carguero.agregarTripulante(t1);
+        carguero.agregarTripulante(t2);
+        System.out.println(carguero.getTripulacion());
 
         System.out.println("\n======================================");
         System.out.println("       FIN DE LAS PRUEBAS");
