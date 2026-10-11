@@ -19,15 +19,15 @@ public class Asistente {
     }
 
     public int getEnergia(){
-        return nave.getEnergia();
+        return this.nave.getEnergia();
     }
 
     public int getDesgaste() {
-        return nave.getDesgaste();
+        return this.nave.getDesgaste();
     }
 
     public Motor getMotor(){
-        return nave.getMotor();
+        return this.nave.getMotor();
     }
 
     public void cargarCombustible(int cantidad) {

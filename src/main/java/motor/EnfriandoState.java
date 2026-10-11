@@ -27,4 +27,7 @@ public class EnfriandoState implements State{
     public boolean estaDisponible() {
         return false;
     }
+    public String toString(){
+        return "Enfriando";
+    }
 }
