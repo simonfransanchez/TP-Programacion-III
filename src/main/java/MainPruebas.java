@@ -93,8 +93,17 @@ public class MainPruebas {
         Tripulante t3 = new Tripulante("Pedro", Cargo.TENIENTE, Origen.MARCIANO,0);
         Tripulante t4 = new Tripulante("Lucia", Cargo.ALFEREZ, Origen.TERRICOLA,2);
         Tripulante t5 = new Tripulante("Marcos", Cargo.TENIENTE, Origen.VULCANO,1);
+        
+        t2.registrarConsejos(4);   // EJEMPLO SI ANA LA CONSEJERA TIENE 4 CONSEJOS
 
-        System.out.println("aca irian los sueldos");
+        for (Tripulante t : List.of(t1, t2, t3, t4, t5)) {
+            System.out.println(t.getIdentidad() + ": " + t.getHaber().calcularHaber());
+        }
+
+        Tripulante t6 = new Tripulante("Jorge", Cargo.CONSEJERO, Origen.VULCANO, 2);        
+         //A MANO JORGE EJ CONSEJERO 2 AÑOS 3 CONSEJOS Y VULCANO FUNCA?
+        Haber haberJorge = new Vulcano(new AdicionalConsejos(new HaberConsejero(t6.getAntiguedad()), 3));
+        System.out.println("Jorge: " + haberJorge.calcularHaber());
 
         carguero.agregarTripulante(t1);
         carguero.agregarTripulante(t2);
