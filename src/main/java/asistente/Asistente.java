@@ -72,16 +72,12 @@ public class Asistente {
             bitacora.agregarEvento("La energia no entraba en el tanque");
         }
     }
-
-//    public void comenzarMision(Mision mision){    LO DEJO EN CASO DE QUE SE TENGA QUE INICIAR LA MISION DESDE EL ASISTENTE
-//        Informe informe;
-//        if (mision != null && puedeCumplir(nave,mision)){
-//            informe = mision.realizarMision(this.nave);
-//            nave.setEnergia();
-//            bitacora.agregarEvento(informe.toString());
-//        }
-//    }
-
+    public void setCombustible(int i){
+        this.nave.setCombustible(i);
+    }
+    public void agregarInformeBitacora(Informe i){
+        bitacora.agregarEvento(i.toString());
+    }
     public void mostrarBitacora(){
         bitacora.mostrarBitacora();
     }
