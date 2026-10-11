@@ -2,7 +2,7 @@ package naves;
 
 public class NaveFactory {
 
-    public NaveBase getNave(String tipo){
+    public static NaveBase getNave(String tipo){
         if (tipo == null)
             return null;
         if (tipo.equalsIgnoreCase("Carguero"))

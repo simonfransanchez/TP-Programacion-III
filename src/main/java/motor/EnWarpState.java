@@ -30,4 +30,7 @@ public class EnWarpState implements State{
     public boolean estaDisponible() {
         return false;
     }
+    public String toString(){
+        return "En Warp";
+    }
 }

@@ -27,4 +27,7 @@ public class DisponibleState implements State{
     public boolean estaDisponible() {
         return true;
     }
+    public String toString(){
+        return "Disponible";
+    }
 }

@@ -1,0 +1,138 @@
+
+import java.util.List;
+import naves.*;
+import motor.*;
+import misiones.*;
+import asistente.*;
+import tripulacion.*;
+
+public class MainPruebas {
+
+    public static void main(String[] args) {
+
+        System.out.println("======================================");
+        System.out.println("     TEST GENERAL DEL SISTEMA");
+        System.out.println("======================================");
+
+        // =====================================
+        // 1. CREACIÓN DE NAVES (FACTORY)
+        // =====================================
+
+        System.out.println("\n--- 1. CREACION DE NAVES ---");
+
+        // TODO: adaptar al nombre de tu Factory y sus métodos
+
+        NaveBase exploradora = NaveFactory.getNave("Exploradora");
+        NaveBase carguero = NaveFactory.getNave("Carguero");
+        NaveBase combate = NaveFactory.getNave("Combate");
+
+        // TODO: mostrar los datos de las naves creadas
+        System.out.println(exploradora);
+        System.out.println(carguero);
+        System.out.println(combate);
+
+
+        // =====================================
+        // 2. PRUEBA DEL MOTOR WARP (STATE)
+        // =====================================
+
+        System.out.println("\n--- 2. MOTOR WARP ---");
+
+        exploradora.iniciarSalto();
+
+        exploradora.iniciarSalto(); // Debería rechazarlo
+        // motor.completarPreparacion();
+        exploradora.completarPreparacion();
+        exploradora.terminarWarp();
+
+        exploradora.iniciarSalto(); // Debería rechazarlo
+
+        exploradora.completarEnfriamiento();
+
+        // Estado: Disponible nuevamente
+        System.out.println(exploradora.getMotor());
+
+
+        // =====================================
+        // 3. RECURSOS Y MANTENIMIENTO
+        // =====================================
+
+        System.out.println("\n--- 3. RECURSOS Y MANTENIMIENTO ---");
+
+        // TODO: usar los métodos reales de Nave
+        // Consultar energía y combustible iniciales
+        // Intentar consumir recursos
+        // Verificar que no queden valores negativos
+        // Aplicar desgaste
+        // Verificar si requiere mantenimiento
+
+        // Ejemplo conceptual:
+        // exploradora.consumirEnergia(cantidad);
+        // exploradora.consumirCombustible(cantidad);
+        // exploradora.aplicarDesgaste(cantidad);
+        // exploradora.realizarMantenimiento();
+
+
+        // =====================================
+        // 4. MISIONES (TEMPLATE METHOD)
+        // =====================================
+
+        System.out.println("\n--- 4. MISIONES ---");
+
+        // TODO: crear las misiones M-01, M-02 y M-03
+        // Mision mision01 = new Mision01(...);
+        // Mision mision02 = new Mision02(...);
+        // Mision mision03 = new Mision03(...);
+
+        // Ejecutar el ciclo completo definido por Template Method:
+        // preparar -> ejecutar -> evaluar -> cerrar
+
+        // mision01.realizarMision();
+        // mision02.realizarMision();
+        // mision03.realizarMision();
+
+
+        // =====================================
+        // 5. BITACORA
+        // =====================================
+
+        System.out.println("\n--- 5. BITACORA ---");
+
+        // TODO: consultar la bitácora de una nave
+        // List<Evento> eventos = exploradora.getBitacora().getEventos();
+
+        // Verificar que los eventos estén registrados
+        // y ordenados cronológicamente.
+
+
+        // =====================================
+        // 6. LIQUIDACION DE SUELDOS (DECORATOR)
+        // =====================================
+
+        System.out.println("\n--- 6. LIQUIDACION DE SUELDOS ---");
+
+        // TODO: crear un tripulante y aplicar los decoradores
+        // Liquidacion sueldoBase = new SueldoBase(tripulante);
+        // Liquidacion sueldoConBonificacion =
+        //         new Bonificacion(sueldoBase);
+
+        // System.out.println(sueldoConBonificacion.calcular());
+
+
+        // =====================================
+        // 7. INFORMES
+        // =====================================
+
+        System.out.println("\n--- 7. INFORMES ---");
+
+        // TODO: generar los informes requeridos por el proyecto
+        // Informe informe = new Informe(...);
+        // System.out.println(informe.generar());
+
+
+        System.out.println("\n======================================");
+        System.out.println("       FIN DE LAS PRUEBAS");
+        System.out.println("======================================");
+    }
+}
+
