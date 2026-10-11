@@ -7,7 +7,7 @@ public class Marciano extends OrigenDecorator {
     }
 
     @Override
-    protected double getSubsidio() {
+    protected double getSubsidiomensual() {
         return 18;
     }
 }
