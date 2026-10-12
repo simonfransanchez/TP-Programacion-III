@@ -11,3 +11,5 @@
 - Propuesta de agregar el metodo estaDisponible() en la interfaz State
 - Revision de errores de compilacion en la clase Asistente
 
+### Pruebas
+- Generación de algunos casos de prueba
