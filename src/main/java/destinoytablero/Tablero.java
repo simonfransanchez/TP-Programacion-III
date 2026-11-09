@@ -14,7 +14,7 @@ import java.util.Set;
  * La coordenada x identifica la fila y la coordenada y la columna. Ambas
  * comienzan en 0. Cada casilla admite un elemento.
  */
-public class Tablero extends Observable {
+public class  Tablero extends Observable {
     /** Cantidad de filas del tablero. */
     private final int x;
     /** Cantidad de columnas del tablero. */

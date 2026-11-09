@@ -49,7 +49,7 @@ public abstract class Mision {
      */
     public final Informe realizarMision() {     // la idea es que dentro de los metodo actualiza el informe
         System.out.println(nombreMision());     // y los recursos de la nave mediante el asistente
-        if (puedeCumplir()) {
+        if (preparar()) {
             System.out.println("Preparando mision");
             preparar();
             System.out.println("Ejecutando mision");
@@ -69,22 +69,24 @@ public abstract class Mision {
      *       && asistente.getCombustible() >= combustibleRequerido
      *       && asistente.getEnergia() >= energiaRequerida
      */
-    private boolean puedeCumplir() {
+    private boolean preparar() {
         String motivoRechazo = "";
 
         if (!asistente.naveDisponible())
-            motivoRechazo = "la nave no se encuentra disponible";
+            motivoRechazo.concat(" la nave no se encuentra disponible");
 
         if (asistente.getCombustible() < combustibleRequerido)
-            motivoRechazo = "no alcanza el combustible";
+            motivoRechazo.concat(" no alcanza el combustible");
 
         if (asistente.getEnergia() < energiaRequerida)
-            motivoRechazo = "no alcanza la energia";
+            motivoRechazo.concat(" no alcanza la energia");
 
         if (!motivoRechazo.equals("")){
             asistente.registrar(nombreMision() + motivoRechazo);
             return false;
         }
+
+
 
         return true;
     }
@@ -93,7 +95,6 @@ public abstract class Mision {
     /** Pre (todos los pasos): puedeCumplir() == true
      * Los metodos se encargan de la carga del informe y la actualizacion de los recursos
      */
-    protected abstract void preparar();
     protected abstract void evaluarResultado();
     protected abstract void ejecutar();
     protected abstract void cerrar();

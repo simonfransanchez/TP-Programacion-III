@@ -7,7 +7,9 @@ public class Mision01 extends Mision {
     public Mision01(Asistente asistente) {super(asistente);}
 
     @Override
-    protected void preparar() {}
+    protected void preparar() {
+
+    }
 
     @Override
     public String nombreMision() {
