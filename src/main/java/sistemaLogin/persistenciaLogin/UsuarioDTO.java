@@ -1,7 +1,5 @@
 package sistemaLogin.persistenciaLogin;
 
-package dto;
-
 public class UsuarioDTO {
 
     private String nombre;

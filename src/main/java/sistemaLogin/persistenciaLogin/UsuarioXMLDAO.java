@@ -1,7 +1,5 @@
 package sistemaLogin.persistenciaLogin;
 
-package dao;
-
 import java.beans.XMLEncoder;
 import java.beans.XMLDecoder;
 import java.io.*;

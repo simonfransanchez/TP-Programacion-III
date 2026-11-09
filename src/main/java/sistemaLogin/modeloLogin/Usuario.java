@@ -1,7 +1,5 @@
 package sistemaLogin.modeloLogin;
 
-package modelo;
-
 public class Usuario {
 
     private String nombre;
