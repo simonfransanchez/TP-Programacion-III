@@ -1,20 +1,33 @@
 package sistemaLogin.modeloLogin;
 
+package modelo;
+
 public class Usuario {
 
-    private String nombreUsuario;
-    private String contraseña;
+    private String nombre;
+    private String password;
 
-    public Usuario(String nombreUsuario, String contraseña) {
-        this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+    public Usuario() {
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public Usuario(String nombre, String password) {
+        this.nombre = nombre;
+        this.password = password;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
