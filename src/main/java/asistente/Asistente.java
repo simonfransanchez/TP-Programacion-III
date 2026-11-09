@@ -16,6 +16,7 @@ public class Asistente {
 
     public Asistente(NaveBase nave) {
         this.nave = nave;
+        assert nave!=null;          //corrrecion primera parte
         this.bitacora = new Bitacora();
     }
 
