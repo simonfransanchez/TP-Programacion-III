@@ -21,8 +21,8 @@ public class VistaControlNave extends JPanel {
         setLayout(new BorderLayout());
         JPanel izquierda = new JPanel(new BorderLayout());
         izquierda.add(new PanelRecursos(asistente), BorderLayout.NORTH);
-        izquierda.add(new PanelBitacora(asistente), BorderLayout.CENTER);
-        izquierda.add(new PanelInformes(asistente), BorderLayout.SOUTH);
+        //izquierda.add(new PanelBitacora(asistente), BorderLayout.CENTER);
+        //izquierda.add(new PanelInformes(asistente), BorderLayout.SOUTH);
         JPanel controles = new JPanel();
         controles.add(misiones);
         controles.add(iniciar);

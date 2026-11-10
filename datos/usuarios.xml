@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="27" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="sistemaLogin.modeloLogin.Usuario">
+    <void property="nombre">
+     <string>POLL</string>
+    </void>
+    <void property="password">
+     <string>LOL</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="sistemaLogin.modeloLogin.Usuario">
+    <void property="nombre">
+     <string>ASDASD</string>
+    </void>
+    <void property="password">
+     <string>A</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="sistemaLogin.modeloLogin.Usuario">
+    <void property="nombre">
+     <string>POLLIO</string>
+    </void>
+    <void property="password">
+     <string>aca</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

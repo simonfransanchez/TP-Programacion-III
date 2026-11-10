@@ -8,7 +8,7 @@ public class Mision02 extends Mision{
         super(asistente);
     }
 
-    @Override
+
     protected void preparar() {}
 
     @Override
