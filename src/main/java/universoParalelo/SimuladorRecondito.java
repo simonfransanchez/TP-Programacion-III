@@ -1,27 +1,35 @@
 package universoParalelo;
 
 import destinoytablero.Observable;
+import java.util.ArrayList;
+import javax.swing.SwingUtilities;
 
 public class SimuladorRecondito extends Observable {
 
     private final Plataforma plataforma;
     private int cantidadGeneradoras = 0;
     private int cantidadNaves = 0;
-    private String ultimoEvento = "";
+    private final ArrayList<String> eventos = new ArrayList<>();
 
     public SimuladorRecondito(int capacidad) {
         this.plataforma = new Plataforma(capacidad);
         this.plataforma.setSimulador(this);
     }
 
+
     public void informarEvento(String mensaje) {
-        ultimoEvento = mensaje;
-        notificarObservadores();
+        synchronized (eventos) {
+            eventos.add(mensaje);
+        }
+        SwingUtilities.invokeLater(() -> notificarObservadores());
     }
 
-    public String getUltimoEvento() {
-        return ultimoEvento;
+    public ArrayList<String> getEventos() {
+        synchronized (eventos) {
+            return new ArrayList<>(eventos);
+        }
     }
+
 
     public void crearGeneradora() {
         cantidadGeneradoras++;
