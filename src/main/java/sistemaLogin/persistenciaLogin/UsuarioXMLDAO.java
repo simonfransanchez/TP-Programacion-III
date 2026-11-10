@@ -1,50 +1,51 @@
+
 package sistemaLogin.persistenciaLogin;
 
 import java.beans.XMLEncoder;
 import java.beans.XMLDecoder;
 import java.io.*;
+import java.nio.file.*;
 import java.util.ArrayList;
 import sistemaLogin.modeloLogin.Usuario;
 
-public class UsuarioXMLDAO {
+public class UsuarioXMLDAO implements UsuarioDAO {
 
-    private String archivo = "usuarios.xml";
+    private static final String ARCHIVO = "datos/usuarios.xml";
 
-    public void guardar(ArrayList<Usuario> usuarios) {
+    @Override
+    public void guardarTodos(ArrayList<Usuario> usuarios) {
 
         try {
-            FileOutputStream fos = new FileOutputStream(archivo);
-            XMLEncoder encoder = new XMLEncoder(fos);
+            Path ruta = Paths.get(ARCHIVO);
 
-            encoder.writeObject(usuarios);
+            // Crear la carpeta si no existe
+            Files.createDirectories(ruta.getParent());
 
-            encoder.close();
-            fos.close();
+            try (FileOutputStream fos = new FileOutputStream(ruta.toFile());
+                 XMLEncoder encoder = new XMLEncoder(fos)) {
+
+                encoder.writeObject(usuarios);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
     public ArrayList<Usuario> obtenerTodos() {
 
-        File f = new File(archivo);
+        File archivo = new File(ARCHIVO);
 
-        if (!f.exists()) {
+        if (!archivo.exists()) {
             return new ArrayList<Usuario>();
         }
 
-        try {
-            FileInputStream fis = new FileInputStream(archivo);
-            XMLDecoder decoder = new XMLDecoder(fis);
+        try (FileInputStream fis = new FileInputStream(archivo);
+             XMLDecoder decoder = new XMLDecoder(fis)) {
 
-            ArrayList<Usuario> usuarios =
-                    (ArrayList<Usuario>) decoder.readObject();
-
-            decoder.close();
-            fis.close();
-
-            return usuarios;
+            return (ArrayList<Usuario>) decoder.readObject();
 
         } catch (Exception e) {
             e.printStackTrace();

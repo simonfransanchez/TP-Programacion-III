@@ -1,4 +1,9 @@
 package vista.paneles;
+import destinoytablero.*;
+
+import javax.swing.*;
+import java.awt.*;
+
 
 public class PanelTablero extends JPanel implements Observador {
     private final Tablero tablero;
