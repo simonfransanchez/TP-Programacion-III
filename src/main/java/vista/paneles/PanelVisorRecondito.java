@@ -1,6 +1,5 @@
 
 package vista.paneles;
-
 import destinoytablero.Observador;
 import universoParalelo.SimuladorRecondito;
 
@@ -11,6 +10,8 @@ public class PanelVisorRecondito extends JPanel implements Observador {
 
     private final SimuladorRecondito simulador;
     private final JTextArea areaEventos;
+    private final JButton botonGeneradora;
+    private final JButton botonNave;
 
     public PanelVisorRecondito(SimuladorRecondito simulador) {
         this.simulador = simulador;
@@ -18,7 +19,20 @@ public class PanelVisorRecondito extends JPanel implements Observador {
         areaEventos = new JTextArea();
         areaEventos.setEditable(false);
         add(new JScrollPane(areaEventos), BorderLayout.CENTER);
+        JPanel panelBotones = new JPanel();
+        botonGeneradora = new JButton("Crear Generadora de Energia");
+        botonNave = new JButton("Crear Nave Consumidora");
+        panelBotones.add(botonGeneradora);
+        panelBotones.add(botonNave);
+        add(panelBotones, BorderLayout.NORTH);
         simulador.agregarObservador(this);
+    }
+    public JButton getBotonGeneradora() {
+        return botonGeneradora;
+    }
+
+    public JButton getBotonNave() {
+        return botonNave;
     }
 
     @Override
