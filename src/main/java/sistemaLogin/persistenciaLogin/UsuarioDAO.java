@@ -1,10 +1,11 @@
 package sistemaLogin.persistenciaLogin;
 
+import sistemaLogin.modeloLogin.Usuario;
+import java.util.ArrayList;
+
 public interface UsuarioDAO {
 
-    void guardar(UsuarioDTO usuario);
+    ArrayList<Usuario> obtenerTodos();
 
-    UsuarioDTO buscarPorNombre(String nombreUsuario);
-
-    boolean existeUsuario(String nombreUsuario);
+    void guardarTodos(ArrayList<Usuario> usuarios);
 }
