@@ -40,6 +40,7 @@ public class LoginVista extends JFrame {
     }
 
     private JPanel crearCampo(String texto, JComponent campo) {
+        campo.setPreferredSize(new Dimension(250, 35));
         JPanel panel = new JPanel(new BorderLayout(5, 5));
         panel.add(new JLabel(texto), BorderLayout.NORTH);
         panel.add(campo, BorderLayout.CENTER);

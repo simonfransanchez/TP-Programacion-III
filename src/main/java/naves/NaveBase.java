@@ -3,6 +3,7 @@ package naves;
 import motor.Motor;
 import motor.State;
 import tripulacion.*;
+import destinoytablero.ElementoDelUniverso;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * Inv: 0 <= combustible <= 100 && 0 <= energia <= 100 && 0 <= desgaste <= 100
  * Inv: motor != null && tripulacion != null
  */
-public abstract class NaveBase {
+public abstract class NaveBase extends ElementoDelUniverso {
 
     private int combustible;
     private int energia;
