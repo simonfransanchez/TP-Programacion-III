@@ -1,3 +1,4 @@
+
 package sistemaLogin.vistaLogin;
 
 import javax.swing.*;
@@ -14,47 +15,86 @@ public class RegistroVista extends JFrame {
     public RegistroVista() {
 
         setTitle("Sistema - Registro");
-        setSize(400, 350);
+        setSize(420, 420);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel panel = new JPanel(new GridLayout(5, 1, 10, 10));
-        panel.setBorder(BorderFactory.createEmptyBorder(25, 40, 25, 40));
+        // Panel principal
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
-        JLabel lblTitulo = new JLabel("Crear cuenta", SwingConstants.CENTER);
+        // Título
+        JLabel lblTitulo = new JLabel("Crear cuenta");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 22));
+        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Campos de texto
         txtUsuario = new JTextField();
         txtPassword = new JPasswordField();
         txtRepetirPassword = new JPasswordField();
 
+        // Botones
         btnRegistrarse = new JButton("Registrarse");
         btnVolver = new JButton("Volver al login");
 
+        // Título
         panel.add(lblTitulo);
+        panel.add(Box.createVerticalStrut(20));
+
+        // Usuario
         panel.add(crearCampo("Usuario:", txtUsuario));
+        panel.add(Box.createVerticalStrut(12));
+
+        // Contraseña
         panel.add(crearCampo("Contraseña:", txtPassword));
+        panel.add(Box.createVerticalStrut(12));
+
+        // Repetir contraseña
         panel.add(crearCampo("Repetir contraseña:", txtRepetirPassword));
+        panel.add(Box.createVerticalStrut(20));
+
+        // Configuración de botones
+        configurarBoton(btnRegistrarse);
+        configurarBoton(btnVolver);
+
         panel.add(btnRegistrarse);
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(btnVolver);
 
-        JPanel panelPrincipal = new JPanel(new BorderLayout(10, 10));
-        panelPrincipal.setBorder(
-                BorderFactory.createEmptyBorder(25, 40, 25, 40)
-        );
-
-        panelPrincipal.add(panel, BorderLayout.CENTER);
-        panelPrincipal.add(btnVolver, BorderLayout.SOUTH);
-
-        add(panelPrincipal);
+        add(panel);
     }
 
     private JPanel crearCampo(String texto, JComponent campo) {
+
         JPanel panel = new JPanel(new BorderLayout(5, 5));
-        panel.add(new JLabel(texto), BorderLayout.NORTH);
+
+        panel.setPreferredSize(new Dimension(320, 62));
+        panel.setMaximumSize(new Dimension(320, 62));
+        panel.setMinimumSize(new Dimension(320, 62));
+
+        JLabel label = new JLabel(texto);
+        label.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        campo.setPreferredSize(new Dimension(300, 32));
+
+        panel.add(label, BorderLayout.NORTH);
         panel.add(campo, BorderLayout.CENTER);
+
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         return panel;
     }
+
+    private void configurarBoton(JButton boton) {
+
+        boton.setPreferredSize(new Dimension(300, 32));
+        boton.setMaximumSize(new Dimension(300, 32));
+        boton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+    // Métodos para el controlador
 
     public String getUsuario() {
         return txtUsuario.getText();
