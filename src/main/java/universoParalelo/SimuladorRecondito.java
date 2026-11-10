@@ -1,3 +1,5 @@
+package universoParalelo;
+
 import destinoytablero.Observable;
 
 public class SimuladorRecondito extends Observable {

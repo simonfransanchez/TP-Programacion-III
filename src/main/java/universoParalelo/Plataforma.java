@@ -1,3 +1,4 @@
+package universoParalelo;
 
 public class Plataforma {
     private int baterias;
