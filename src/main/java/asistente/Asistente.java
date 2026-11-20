@@ -126,4 +126,8 @@ public class Asistente extends Observable {
     public synchronized List<Informe> getInformes() {
         return new ArrayList<>(informes);
     }
+
+    public void perderEnergia(int danioEnergia) {
+
+    }
 }

@@ -1,5 +1,7 @@
 package destinoytablero;
 
+import elementos.ElementoDelUniverso;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,5 +1,6 @@
 package vista.paneles;
 import destinoytablero.*;
+import elementos.ElementoDelUniverso;
 
 import javax.swing.*;
 import java.awt.*;
