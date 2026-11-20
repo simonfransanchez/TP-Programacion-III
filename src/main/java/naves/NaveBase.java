@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Inv: motor != null && tripulacion != null
  */
 public abstract class NaveBase {
-
+    private boolean destruida = false;
     private int combustible;
     private int energia;
     private int desgaste;
@@ -53,6 +53,10 @@ public abstract class NaveBase {
         this.desgaste = desgaste;
     }
 
+    public boolean estaDestruida() { return destruida; }
+
+    public void destruir() { destruida = true; }
+
     /**
      * Pre:  t != null
      * Post: tripulacion contiene a t
@@ -93,4 +97,9 @@ public abstract class NaveBase {
     public void completarPreparacion(){
         motor.completarPreparacion();
     }
+
+    public abstract ResultadoCombate combatirContra(NaveBase enemiga);   // 1.er despacho: receptor = nave propia
+    public abstract ResultadoCombate resultadoParaExploradora();         // 2.º despacho: receptor = enemiga
+    public abstract ResultadoCombate resultadoParaCarguero();
+    public abstract ResultadoCombate resultadoParaCombate();
 }

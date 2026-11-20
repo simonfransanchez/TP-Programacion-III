@@ -13,8 +13,7 @@ public class EstacionDeCarga implements ElementoDelUniverso {
 
     @Override public void interactuar(Asistente asistente) {
         asistente.registrar("Estación de carga: +" + combustible + " combustible, +" + energia + " energía");
-        asistente.cargarCombustible(combustible);
-        asistente.cargarEnergia(energia);
+        asistente.recargar(combustible,energia);
     }
     @Override public String descripcion() { return "Estación de carga"; }
 }
