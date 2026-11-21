@@ -1,12 +1,12 @@
 
 package sistemaLogin.controladorLogin;
 
+import controlador.NaveControlador;
 import sistemaLogin.modeloLogin.Usuario;
 import sistemaLogin.persistenciaLogin.UsuarioDAO;
 import sistemaLogin.vistaLogin.LoginVista;
 import sistemaLogin.vistaLogin.RegistroVista;
-import naves.vistaNaves.*;
-import naves.controladorNaves.*;
+import vista.CrearNaveVista;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class LoginControlador {
             if (usuario.getNombre().equalsIgnoreCase(nombre)
                     && usuario.getPassword().equals(password)) {
 
-                vista.mostrarMensaje("¡Bienvenido, " + nombre + "!");
+                //vista.mostrarMensaje("¡Bienvenido, " + nombre + "!");
 
                 vista.limpiarCampos();
                 vista.dispose();
