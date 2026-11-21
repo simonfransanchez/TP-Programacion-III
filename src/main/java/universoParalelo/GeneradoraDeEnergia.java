@@ -1,6 +1,6 @@
 package universoParalelo;
-public class GeneradoraDeEnergia extends Thread {
 
+public class GeneradoraDeEnergia extends Thread {
     private final Plataforma plataforma;
     private final SimuladorRecondito simulador;
     private final int id;
