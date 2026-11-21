@@ -1,4 +1,4 @@
-
+package universoParalelo;
 public class GeneradoraDeEnergia extends Thread {
 
     private final Plataforma plataforma;
