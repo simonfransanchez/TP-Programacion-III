@@ -31,5 +31,35 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="sistemaLogin.modeloLogin.Usuario">
+    <void property="nombre">
+     <string>asd</string>
+    </void>
+    <void property="password">
+     <string>asd</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="sistemaLogin.modeloLogin.Usuario">
+    <void property="nombre">
+     <string>asdd</string>
+    </void>
+    <void property="password">
+     <string>asdd</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="sistemaLogin.modeloLogin.Usuario">
+    <void property="nombre">
+     <string>asdddd</string>
+    </void>
+    <void property="password">
+     <string>asddd</string>
+    </void>
+   </object>
+  </void>
  </object>
 </java>

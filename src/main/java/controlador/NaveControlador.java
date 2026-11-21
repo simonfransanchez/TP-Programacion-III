@@ -1,8 +1,8 @@
-package naves.controladorNaves;
+package controlador;
 
-import naves.vistaNaves.*;
 import naves.NaveBase;
 import naves.NaveFactory;
+import vista.*;
 
 public class NaveControlador {
 
@@ -20,6 +20,11 @@ public class NaveControlador {
 
         String tipo = vista.getTipoNave();
 
+        if (tipo == null) {
+            vista.mostrarMensaje("Primero seleccioná un tipo de nave.");
+            return;
+        }
+
         nave = NaveFactory.getNave(tipo);
 
         if (nave == null) {
@@ -27,10 +32,16 @@ public class NaveControlador {
             return;
         }
 
-        vista.mostrarMensaje(
-                "¡Nave creada correctamente!\nTipo: " +
-                        tipo + "\n" + nave.toString()
-        );
+        // Cerrar la ventana de selección
+        vista.dispose();
+
+        // Abrir la ventana de creación de tripulación
+        CrearTripulanteVista vistaTripulantes = new CrearTripulanteVista();
+
+        TripulacionControlador controladorTripulacion =
+                new TripulacionControlador(vistaTripulantes, nave);
+
+        vistaTripulantes.setVisible(true);
     }
 
     public NaveBase getNave() {

@@ -67,7 +67,7 @@ public class RegistroControlador {
         usuarios.add(nuevoUsuario);
         dao.guardarTodos(usuarios);
 
-        vista.mostrarMensaje("¡Usuario registrado correctamente!");
+        //vista.mostrarMensaje("¡Usuario registrado correctamente!");
 
         vista.limpiarCampos();
         vista.dispose();
