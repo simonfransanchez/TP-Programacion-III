@@ -1,10 +1,6 @@
-import java.util.List;
 import naves.*;
-import motor.*;
-import misiones.*;
 import asistente.*;
-import tripulacion.*;
-import tripulacion.haberes.*;
+
 
 public class mainCasoD {
     public static void main(String[] args) {
