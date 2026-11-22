@@ -11,6 +11,7 @@ import destinoytablero.Tablero;
 import elementos.ElementoDelUniverso;
 import vista.VistaControlNave;
 import vista.paneles.PanelVisor;
+import vista.VistaTripulantes;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -132,6 +133,12 @@ private void finalizar() {
             new VistaControlNave(asistente, tablero);
 
     new ControladorControlNave(asistente, vistaControl);
+
+            vistaControl.getBtnVerTripulacion().addActionListener(e -> {
+            VistaTripulantes vistaTripulantes = new VistaTripulantes();
+            ControladorTripulantes controladorTripulantes = new ControladorTripulantes(vistaTripulantes, nave);
+            controladorTripulantes.mostrarTripulantes();
+        });
 
     // CREAR VISOR RECÓNDITO
     SimuladorRecondito simulador = new SimuladorRecondito(5);
