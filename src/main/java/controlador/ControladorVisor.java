@@ -1,3 +1,4 @@
+
 package controlador;
 
 import vista.paneles.PanelVisor;
@@ -11,7 +12,8 @@ public class ControladorVisor implements ActionListener {
     private final PanelVisor vista;
     private final SimuladorRecondito modelo;
 
-    public ControladorVisor(PanelVisor vista, SimuladorRecondito modelo) {
+    public ControladorVisor(PanelVisor vista,
+                            SimuladorRecondito modelo) {
 
         this.vista = vista;
         this.modelo = modelo;
@@ -33,6 +35,7 @@ public class ControladorVisor implements ActionListener {
             case "Crear Nave Consumidora":
                 modelo.crearNaveConsumidora();
                 break;
+
             case "Detener simulación":
                 modelo.detenerSimulacion();
                 vista.deshabilitarBotones();

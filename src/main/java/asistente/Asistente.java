@@ -1,7 +1,9 @@
 package asistente;
 
+import destinoytablero.Destino;
 import destinoytablero.Observable;
 import destinoytablero.Observador;
+import destinoytablero.Posicion;
 import destinoytablero.Tablero;
 import elementos.ElementoDelUniverso;
 import misiones.Informe;
@@ -20,16 +22,33 @@ import java.util.Objects;
  * Inv: nave != null && bitacora != null
  */
 public class Asistente extends Observable {
-    private NaveBase nave;
-    private Bitacora bitacora;
-    private final List<Informe> informes = new ArrayList<>();
     private static final int CAPACIDAD_MAXIMA = 100;
-    private Tablero tablero;
+    private static final int COSTO_SALTO_COMBUSTIBLE = 2;   // salto normal (anexo)
+    private static final int COSTO_WARP_ENERGIA = 5;        // salto warp (anexo)
+    private static final int DESGASTE_WARP = 3;             // enfriamiento posterior (anexo)
 
+    private final NaveBase nave;
+    private final Bitacora bitacora;
+    private final List<Informe> informes = new ArrayList<>();
+    private final Tablero tablero;      // null si el asistente se usa sin universo (Parte 1)
+    private final Destino destino;      // turnos del tablero; null si no hay tablero
+    private final Posicion base;        // posicion de la nave al crearse: la base de origen
+
+    /** Asistente sin universo: sirve para recursos y bitacora, pero no para misiones. */
     public Asistente(NaveBase nave) {
-        this.nave = Objects.requireNonNull(nave, "La nave no puede ser null");   //corrrecion primera parte
-        this.tablero = Objects.requireNonNull(tablero, "El tablero no puede ser null");
+        this(nave, null);
+    }
+
+    /**
+     * Pre:  nave != null
+     * Post: si tablero != null, la base de origen es la posicion actual de la nave en el tablero
+     */
+    public Asistente(NaveBase nave, Tablero tablero) {
+        this.nave = Objects.requireNonNull(nave, "La nave no puede ser null");
         this.bitacora = new Bitacora();
+        this.tablero = tablero;
+        this.destino = (tablero == null) ? null : new Destino(tablero);
+        this.base = (tablero == null) ? null : tablero.getPosicionNave();
     }
 
     public int getCombustible() {
@@ -42,6 +61,10 @@ public class Asistente extends Observable {
 
     public int getDesgaste() {
         return this.nave.getDesgaste();
+    }
+
+    public int getGemas() {
+        return this.nave.getGemas();
     }
 
     public Motor getMotor(){
@@ -218,4 +241,150 @@ public class Asistente extends Observable {
         }
     }
 
+    // ------------------------------------------------------------------
+    // Operaciones para las misiones: recursos, radares y movimiento
+    // ------------------------------------------------------------------
+
+    public boolean tieneTablero() {
+        return tablero != null;
+    }
+
+    /** Pre: tieneTablero() */
+    public Posicion getPosicion() {
+        exigirTablero();
+        return tablero.getPosicionNave();
+    }
+
+    /** Pre: tieneTablero(). Post: posicion de la nave cuando se creo el asistente. */
+    public Posicion getBase() {
+        exigirTablero();
+        return base;
+    }
+
+    /** Pre: tieneTablero(). Post: sortea un destino libre en el tablero (lo notifica a los observadores). */
+    public Posicion obtenerObjetivo() {
+        exigirTablero();
+        return tablero.obtenerObjetivo();
+    }
+
+    /**
+     * Radar de largo alcance.
+     * Pre:  tieneTablero() && destino != null
+     * Post: camino desde la posicion actual hasta destino (ambos incluidos); vacio si no hay
+     */
+    public List<Posicion> calcularRuta(Posicion destino) {
+        exigirTablero();
+        Objects.requireNonNull(destino, "Falta el destino");
+        return Radar.calcularRuta(tablero, tablero.getPosicionNave(), destino);
+    }
+
+    /**
+     * Radar de corto alcance.
+     * Pre:  tieneTablero()
+     * Post: true si y solo si p es un casillero vecino de la nave con un obstaculo
+     */
+    public boolean hayObstaculoEn(Posicion p) {
+        exigirTablero();
+        Objects.requireNonNull(p, "Falta la posicion");
+        return Radar.hayObstaculoEn(tablero, p);
+    }
+
+    /** Turno del tablero: Destino mueve al azar los elementos. Pre: tieneTablero() */
+    public void avanzarTablero() {
+        exigirTablero();
+        destino.turnoDestino();
+    }
+
+    /**
+     * Cambio de recursos de todo o nada: o se aplican las cuatro variaciones o no cambia nada.
+     * Post: si devuelve true, combustible, energia y desgaste siguen en [0, 100] y gemas >= 0;
+     *       si el resultado deja la nave sin condiciones de vida, queda destruida.
+     * Post: si devuelve false, la nave no cambio y se registra el rechazo.
+     */
+    public boolean aplicarVariacion(int dCombustible, int dEnergia, int dDesgaste, int dGemas) {
+        int combustible = nave.getCombustible() + dCombustible;
+        int energia = nave.getEnergia() + dEnergia;
+        int desgaste = nave.getDesgaste() + dDesgaste;
+        int gemas = nave.getGemas() + dGemas;
+        if (combustible < 0 || combustible > CAPACIDAD_MAXIMA
+                || energia < 0 || energia > CAPACIDAD_MAXIMA
+                || desgaste < 0 || desgaste > CAPACIDAD_MAXIMA
+                || gemas < 0) {
+            registrar("Cambio de recursos rechazado: dejaria un recurso fuera de rango");
+            return false;
+        }
+        nave.setCombustible(combustible);
+        nave.setEnergia(energia);
+        nave.setDesgaste(desgaste);
+        nave.setGemas(gemas);
+        evaluarDestruccion();
+        notificarObservadores();
+        return true;
+    }
+
+    /**
+     * Salto normal: avanza un casillero y consume 2 de combustible.
+     * Pre:  tieneTablero() && siguiente es vecino inmediato de la nave y esta dentro del tablero
+     * Post: true si la nave se movio; false si no pudo (destruida o sin combustible para el salto)
+     * NOTA: provisorio. Cuando exista el Motor de la Parte 2, esto delega en motor.saltar().
+     */
+    public boolean saltar(Posicion siguiente) {
+        exigirTablero();
+        Objects.requireNonNull(siguiente, "Falta la posicion");
+        Posicion actual = tablero.getPosicionNave();
+        int distancia = Math.max(Math.abs(siguiente.getX() - actual.getX()),
+                Math.abs(siguiente.getY() - actual.getY()));
+        if (distancia != 1 || !Radar.dentro(tablero, siguiente)) {
+            throw new IllegalArgumentException("El salto normal avanza un casillero dentro del tablero");
+        }
+        if (!naveViva() || nave.getCombustible() < COSTO_SALTO_COMBUSTIBLE) {
+            return false;
+        }
+        aplicarVariacion(-COSTO_SALTO_COMBUSTIBLE, 0, 0, 0);
+        if (!naveViva()) {
+            return false;
+        }
+        tablero.moverNave(siguiente);
+        return true;
+    }
+
+    /**
+     * Salto warp: avanza dos casilleros en la direccion de siguiente, esquivando lo que haya en medio.
+     * Consume 5 de energia y genera 3 de desgaste.
+     * Pre:  tieneTablero() && siguiente es vecino inmediato de la nave
+     * Post: true si la nave se movio; false si no pudo (motor no disponible, sin energia,
+     *       desgaste que pasaria de 100 o aterrizaje fuera del tablero) y entonces no cambia nada
+     * NOTA: provisorio. Faltan los 2 turnos de preparacion y el de enfriamiento: cuando exista
+     *       el Motor de la Parte 2 (State), esto delega en motor.saltarWarp().
+     */
+    public boolean saltarWarp(Posicion siguiente) {
+        exigirTablero();
+        Objects.requireNonNull(siguiente, "Falta la posicion");
+        Posicion actual = tablero.getPosicionNave();
+        int dx = Integer.signum(siguiente.getX() - actual.getX());
+        int dy = Integer.signum(siguiente.getY() - actual.getY());
+        if (dx == 0 && dy == 0) {
+            throw new IllegalArgumentException("El salto warp necesita una direccion");
+        }
+        Posicion aterrizaje = new Posicion(actual.getX() + 2 * dx, actual.getY() + 2 * dy);
+        if (!naveViva() || !naveDisponible() || !Radar.dentro(tablero, aterrizaje)
+                || nave.getEnergia() < COSTO_WARP_ENERGIA
+                || nave.getDesgaste() + DESGASTE_WARP > CAPACIDAD_MAXIMA) {
+            return false;
+        }
+        aplicarVariacion(0, -COSTO_WARP_ENERGIA, DESGASTE_WARP, 0);
+        if (!naveViva()) {
+            return false;
+        }
+        tablero.moverNave(aterrizaje);
+        registrar("Salto warp de (" + actual.getX() + ", " + actual.getY() + ") a ("
+                + aterrizaje.getX() + ", " + aterrizaje.getY() + ")");
+        return true;
+    }
+
+    private void exigirTablero() {
+        if (tablero == null) {
+            throw new IllegalStateException("El asistente no tiene un tablero asociado");
+        }
+    }
 }

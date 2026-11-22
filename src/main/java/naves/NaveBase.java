@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Inv: 0 <= combustible <= 100 && 0 <= energia <= 100 && 0 <= desgaste <= 100
+ * Inv: gemas >= 0
  * Inv: motor != null && tripulacion != null
  */
 public abstract class NaveBase {
@@ -14,6 +15,7 @@ public abstract class NaveBase {
     private int combustible;
     private int energia;
     private int desgaste;
+    private int gemas;
     private Motor motor;
     private ArrayList<Tripulante> tripulacion;
 
@@ -53,6 +55,14 @@ public abstract class NaveBase {
         this.desgaste = desgaste;
     }
 
+    public int getGemas() {
+        return gemas;
+    }
+
+    public void setGemas(int gemas) {
+        this.gemas = gemas;
+    }
+
     public boolean estaDestruida() { return destruida; }
 
     public void destruir() { destruida = true; }
@@ -75,7 +85,7 @@ public abstract class NaveBase {
         return this.tripulacion;
     }
     public String toString(){
-        return "Combustible:"+this.combustible+"  Energia:"+this.energia+"  Desgaste:"+this.desgaste;
+        return "Combustible:"+this.combustible+"  Energia:"+this.energia+"  Desgaste:"+this.desgaste+"  Gemas:"+this.gemas;
     }
 
     /**
