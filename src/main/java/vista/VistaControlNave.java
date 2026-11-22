@@ -16,6 +16,7 @@ public class VistaControlNave extends JPanel {
     private final JComboBox<String> misiones = new JComboBox<>(new String[]{
             "M-01 Intercepción y asistencia", "M-02 Recolección", "M-03 Retorno seguro"});
     private final JButton iniciar = new JButton("Iniciar misión");
+    private final JButton verTripulacion = new JButton("Ver tripulación");
 
     public VistaControlNave(Asistente asistente, Tablero tablero) {
         setLayout(new BorderLayout());
@@ -26,12 +27,14 @@ public class VistaControlNave extends JPanel {
         JPanel controles = new JPanel();
         controles.add(misiones);
         controles.add(iniciar);
+        controles.add(verTripulacion); 
         add(izquierda, BorderLayout.WEST);
         add(new PanelTablero(tablero), BorderLayout.CENTER);
         add(controles, BorderLayout.SOUTH);
     }
 
     public void setControlador(ActionListener c) { iniciar.addActionListener(c); }
+    public JButton getBtnVerTripulacion() { return verTripulacion; } 
     public int getNumeroMision() { return misiones.getSelectedIndex() + 1; }
     public void habilitarInicio(boolean b) { iniciar.setEnabled(b); misiones.setEnabled(b); }
     public void mostrarResultado(Informe i) { JOptionPane.showMessageDialog(this, i.toString()); }
