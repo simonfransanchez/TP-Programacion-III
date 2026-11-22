@@ -1,7 +1,6 @@
 
 import java.util.List;
 import naves.*;
-import motor.*;
 import misiones.*;
 import asistente.*;
 import tripulacion.*;
@@ -28,6 +27,7 @@ public class MainPruebas {
         NaveBase combate = NaveFactory.getNave("Combate");
 
         // TODO: mostrar los datos de las naves creadas
+        
         System.out.println(exploradora);
         System.out.println(carguero);
         System.out.println(combate);

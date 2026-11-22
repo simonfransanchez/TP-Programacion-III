@@ -38,8 +38,7 @@ public class NaveControlador {
         // Abrir la ventana de creación de tripulación
         CrearTripulanteVista vistaTripulantes = new CrearTripulanteVista();
 
-        TripulacionControlador controladorTripulacion =
-                new TripulacionControlador(vistaTripulantes, nave);
+        TripulacionControlador controladorTripulacion = new TripulacionControlador(vistaTripulantes, nave);
 
         vistaTripulantes.setVisible(true);
     }

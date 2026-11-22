@@ -127,7 +127,7 @@ private void finalizar() {
         return;
     }
 
-    Asistente asistente = new Asistente(nave);
+    Asistente asistente = new Asistente(nave, tablero);
 
     VistaControlNave vistaControl =
             new VistaControlNave(asistente, tablero);

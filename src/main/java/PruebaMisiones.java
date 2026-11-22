@@ -1,5 +1,4 @@
 import asistente.Asistente;
-import destinoytablero.Posicion;
 import destinoytablero.Tablero;
 import elementos.*;
 import misiones.*;
