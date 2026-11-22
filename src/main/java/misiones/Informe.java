@@ -86,6 +86,18 @@ public class Informe {
         return desgasteFinal;
     }
 
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public List<String> getRecorrido() {
+        return recorrido;
+    }
+
+    public List<String> getEventosRelevantes() {
+        return eventosRelevantes;
+    }
+
     public List<String> getObservaciones() {
         return observaciones;
     }
