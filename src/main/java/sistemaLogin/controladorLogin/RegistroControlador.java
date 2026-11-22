@@ -1,8 +1,7 @@
-
 package sistemaLogin.controladorLogin;
 
-import sistemaLogin.modeloLogin.Usuario;
 import sistemaLogin.persistenciaLogin.UsuarioDAO;
+import sistemaLogin.persistenciaLogin.UsuarioDTO;
 import sistemaLogin.vistaLogin.LoginVista;
 import sistemaLogin.vistaLogin.RegistroVista;
 
@@ -33,7 +32,6 @@ public class RegistroControlador {
         String password = new String(vista.getPassword());
         String repetirPassword = new String(vista.getRepetirPassword());
 
-        // Validar campos vacíos
         if (nombre.isEmpty() || password.isEmpty()
                 || repetirPassword.isEmpty()) {
 
@@ -41,18 +39,15 @@ public class RegistroControlador {
             return;
         }
 
-        // Validar coincidencia de contraseñas
         if (!password.equals(repetirPassword)) {
 
             vista.mostrarMensaje("Las contraseñas no coinciden.");
             return;
         }
 
-        // Obtener usuarios existentes
-        ArrayList<Usuario> usuarios = dao.obtenerTodos();
+        ArrayList<UsuarioDTO> usuarios = dao.obtenerTodos();
 
-        // Verificar si el usuario ya existe
-        for (Usuario usuario : usuarios) {
+        for (UsuarioDTO usuario : usuarios) {
 
             if (usuario.getNombre().equalsIgnoreCase(nombre)) {
 
@@ -61,13 +56,10 @@ public class RegistroControlador {
             }
         }
 
-        // Crear y guardar el nuevo usuario
-        Usuario nuevoUsuario = new Usuario(nombre, password);
+        UsuarioDTO nuevoUsuario = new UsuarioDTO(nombre, password);
 
         usuarios.add(nuevoUsuario);
         dao.guardarTodos(usuarios);
-
-        //vista.mostrarMensaje("¡Usuario registrado correctamente!");
 
         vista.limpiarCampos();
         vista.dispose();
