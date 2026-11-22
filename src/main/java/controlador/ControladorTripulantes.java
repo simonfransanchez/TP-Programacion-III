@@ -16,9 +16,7 @@ public class ControladorTripulantes {
         vista.getBtnCerrar().addActionListener(e -> vista.dispose());
     }
 
-    /**
-     * Le pide la tripulación al modelo (la nave) y se la pasa a la vista.
-     */
+ /*Le pide la tripulación al modelo (la nave) y se la pasa a la vista.*/
     public void mostrarTripulantes() {
         vista.limpiar();
 
