@@ -1,9 +1,8 @@
-
 package sistemaLogin.controladorLogin;
 
 import controlador.NaveControlador;
-import sistemaLogin.modeloLogin.Usuario;
 import sistemaLogin.persistenciaLogin.UsuarioDAO;
+import sistemaLogin.persistenciaLogin.UsuarioDTO;
 import sistemaLogin.vistaLogin.LoginVista;
 import sistemaLogin.vistaLogin.RegistroVista;
 import vista.CrearNaveVista;
@@ -30,19 +29,16 @@ public class LoginControlador {
         String password = new String(vista.getPassword());
 
         if (nombre.isEmpty() || password.isEmpty()) {
-
             vista.mostrarMensaje("Complete todos los campos.");
             return;
         }
 
-        ArrayList<Usuario> usuarios = dao.obtenerTodos();
+        ArrayList<UsuarioDTO> usuarios = dao.obtenerTodos();
 
-        for (Usuario usuario : usuarios) {
+        for (UsuarioDTO usuario : usuarios) {
 
             if (usuario.getNombre().equalsIgnoreCase(nombre)
                     && usuario.getPassword().equals(password)) {
-
-                //vista.mostrarMensaje("¡Bienvenido, " + nombre + "!");
 
                 vista.limpiarCampos();
                 vista.dispose();
@@ -69,4 +65,3 @@ public class LoginControlador {
         registro.setVisible(true);
     }
 }
-

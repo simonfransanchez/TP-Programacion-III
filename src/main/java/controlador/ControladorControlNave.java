@@ -29,7 +29,7 @@ public class ControladorControlNave implements ActionListener {
                 return mision.realizarMision();            // corre fuera del hilo de eventos
             }
             @Override protected void done() {
-                try { vista.mostrarResultado(get()); }
+                try { get(); }
                 catch (Exception ex) { vista.mostrarError("La misión terminó con un error: " + ex.getMessage()); }
                 vista.habilitarInicio(true);
             }

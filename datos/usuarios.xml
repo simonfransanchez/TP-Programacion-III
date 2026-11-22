@@ -1,83 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="25.0.4.1" class="java.beans.XMLDecoder">
+<java version="27" class="java.beans.XMLDecoder">
  <object class="java.util.ArrayList">
   <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
-    <void property="nombre">
-     <string>POLL</string>
-    </void>
-    <void property="password">
-     <string>LOL</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
-    <void property="nombre">
-     <string>ASDASD</string>
-    </void>
-    <void property="password">
-     <string>A</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
-    <void property="nombre">
-     <string>POLLIO</string>
-    </void>
-    <void property="password">
-     <string>aca</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
+   <object class="sistemaLogin.persistenciaLogin.UsuarioDTO">
     <void property="nombre">
      <string>asd</string>
     </void>
     <void property="password">
      <string>asd</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
-    <void property="nombre">
-     <string>asdd</string>
-    </void>
-    <void property="password">
-     <string>asdd</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
-    <void property="nombre">
-     <string>asdddd</string>
-    </void>
-    <void property="password">
-     <string>asddd</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
-    <void property="nombre">
-     <string>jull</string>
-    </void>
-    <void property="password">
-     <string>1234</string>
-    </void>
-   </object>
-  </void>
-  <void method="add">
-   <object class="sistemaLogin.modeloLogin.Usuario">
-    <void property="nombre">
-     <string>azul</string>
-    </void>
-    <void property="password">
-     <string>1234</string>
     </void>
    </object>
   </void>

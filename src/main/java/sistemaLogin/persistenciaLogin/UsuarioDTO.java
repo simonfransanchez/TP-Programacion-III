@@ -1,9 +1,13 @@
+
 package sistemaLogin.persistenciaLogin;
 
 public class UsuarioDTO {
 
     private String nombre;
     private String password;
+
+    public UsuarioDTO() {
+    }
 
     public UsuarioDTO(String nombre, String password) {
         this.nombre = nombre;
@@ -14,7 +18,15 @@ public class UsuarioDTO {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
