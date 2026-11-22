@@ -7,7 +7,7 @@ import tripulacion.Cargo;
 import tripulacion.Origen;
 import asistente.Asistente;
 import destinoytablero.Tablero;
-import destinoytablero.ElementoDelUniverso;
+import elementos.ElementoDelUniverso;
 import vista.VistaControlNave;
 import controlador.ControladorControlNave;
 

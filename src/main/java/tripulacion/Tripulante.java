@@ -32,8 +32,14 @@ public class Tripulante {
     public int getAntiguedad() {
         return antiguedad;
     }
+    public int getConsejos() {
+        return consejos;
+    }
 
-
+    public double getSalario() {
+        return getHaber().calcularHaber();
+   }
+   
      public void registrarConsejos(int cantidad) {
         if (cargo != Cargo.CONSEJERO) {
             throw new IllegalStateException("Solo un consejero puede registrar consejos!!!!");
