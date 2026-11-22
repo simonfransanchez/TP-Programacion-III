@@ -3,16 +3,18 @@ package controlador;
 import naves.NaveBase;
 import vista.CrearTripulanteVista;
 import tripulacion.Tripulante;
+import universoParalelo.SimuladorRecondito;
 import tripulacion.Cargo;
 import tripulacion.Origen;
 import asistente.Asistente;
 import destinoytablero.Tablero;
-import destinoytablero.ElementoDelUniverso;
+import elementos.ElementoDelUniverso;
 import vista.VistaControlNave;
-import controlador.ControladorControlNave;
+import vista.paneles.PanelVisor;
 
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 
 public class TripulacionControlador {
 
@@ -109,33 +111,52 @@ public class TripulacionControlador {
         vista.eliminarDeLista(seleccionado);
     }
 
-    private void finalizar() {
-        vista.dispose();
+    
+private void finalizar() {
 
-        Asistente asistente = new Asistente(nave);
+    ArrayList<ElementoDelUniverso> elementos = new ArrayList<>();
 
-        ArrayList<ElementoDelUniverso> elementos = new ArrayList<>();
-
-        Tablero tablero;
-        try {
-            tablero = new Tablero(10, 10, elementos);
-        } catch (Exception e) {
-            vista.mostrarError("No se pudo crear el tablero: " + e.getMessage());
-            return;
-        }
-
-        VistaControlNave vistaControl =
-                new VistaControlNave(asistente, tablero);
-
-        new ControladorControlNave(asistente, vistaControl);
-
-        JFrame ventana = new JFrame("Control de nave");
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(1000, 700);
-        ventana.setLocationRelativeTo(null);
-        ventana.setContentPane(vistaControl);
-        ventana.setVisible(true);
+    Tablero tablero;
+    try {
+        tablero = new Tablero(10, 10, elementos);
+    } catch (Exception e) {
+        vista.mostrarError(
+            "No se pudo crear el tablero: " + e.getMessage()
+        );
+        return;
     }
+
+    Asistente asistente = new Asistente(nave);
+
+    VistaControlNave vistaControl =
+            new VistaControlNave(asistente, tablero);
+
+    new ControladorControlNave(asistente, vistaControl);
+
+    // CREAR VISOR RECÓNDITO
+    SimuladorRecondito simulador = new SimuladorRecondito(5);
+
+    PanelVisor panelVisor = new PanelVisor(simulador);
+
+    new ControladorVisor(panelVisor, simulador);
+
+    // UNIR AMBOS PANELES
+    JTabbedPane pestanas = new JTabbedPane();
+
+    pestanas.addTab("Control de nave", vistaControl);
+    pestanas.addTab("Visor Recóndito", panelVisor);
+
+    // VENTANA PRINCIPAL
+    JFrame ventana = new JFrame("Sistema de control de nave");
+    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    ventana.setSize(1000, 700);
+    ventana.setLocationRelativeTo(null);
+    ventana.setContentPane(pestanas);
+    ventana.setVisible(true);
+
+    vista.dispose();
+}
+
 
     public NaveBase getNave() {
         return nave;
