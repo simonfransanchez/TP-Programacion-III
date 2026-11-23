@@ -21,12 +21,15 @@
 ### Hilos en la vista
 - La misión se lanza en un SwingWorker para no congelar la ventana y se deshabilita el botón mientras corre
 - El tablero se copia dentro de actualizar() y se dibuja con repaint(), para evitar carreras con Destino
-- Los observadores se registran antes de iniciar cualquier misión, porque Observable no está sincronizado 
+- Los observadores se registran antes de iniciar cualquier misión, porque Observable no está sincronizado
 - Los paneles actualizan con invokeLater
 
 ### Combate entre naves
-- El combate usa Double Dispatch con ResultadoCombate y la tabla del enunciado, sin instanceof.
+- El combate usa Double Dispatch con ResultadoCombate y la tabla del enunciado, sin instanceof
 
 ### Asistente
-- Métodos con contratos: combatirContra e interactuarConElementoActual. 
-- Agregación de dos constructores debido a un bug.
+- Métodos con contratos: combatirContra e interactuarConElementoActual
+- Agregación de dos constructores debido a un bug
+
+### Misiones
+- Arreglo de malas decisiones de diseño junto a agregacion de atributos y metodos necesarios para el informe de cada mision
